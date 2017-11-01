@@ -1,0 +1,56 @@
+<p id="notice"><%= notice %></p>
+
+<p>
+  <strong>Name:</strong>
+  <%= @course.name %>
+</p>
+
+<p>
+  <strong>Credits:</strong>
+  <%= @course.credits %>
+</p>
+
+<p>
+  <strong>LTP:</strong>
+  <%= @course.ltp %>
+</p>
+
+<p>
+  <strong>Course Type:</strong>
+  <%= @course.course_type %>
+</p>
+
+<p>
+  <strong>Academic Degree:</strong>
+  <%= @course.academic_degree.name %>
+</p>
+
+<p>
+  <strong>Department:</strong>
+  <%= @course.department.name %>
+</p>
+
+<%= link_to 'Edit Details', edit_course_path(@course) %>
+
+
+<h3>Pre Requisites</h3>
+
+<div id="pre_requisites">
+  <%= render @course.course_pre_requisites %>
+</div>
+
+<div>
+  <%= form_for([@course, @course.course_pre_requisites.new]) do |f| %>
+      <div class="field">
+        <%= f.label :course_pre_requisite_id %>
+        <%= f.select :course_pre_requisite_id, options_for_select(Course.all.map{ |c| [c.name, c.id ] }) %>
+
+      </div>
+
+      <div class="actions">
+        <%= f.submit "Add New Prerequisite" %>
+      </div>
+  <% end %>
+</div>
+
+<%= link_to 'Back', courses_path %>

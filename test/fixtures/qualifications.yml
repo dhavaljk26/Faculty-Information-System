@@ -1,0 +1,15 @@
+# Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
+
+one:
+  faculty: one
+  degree_name: MyString
+  degree_major: MyString
+  institution: MyString
+  year: 1
+
+two:
+  faculty: two
+  degree_name: MyString
+  degree_major: MyString
+  institution: MyString
+  year: 1

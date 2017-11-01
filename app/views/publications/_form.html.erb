@@ -1,0 +1,42 @@
+<%= form_with(model: publication, local: true) do |form| %>
+  <% if publication.errors.any? %>
+    <div id="error_explanation">
+      <h2><%= pluralize(publication.errors.count, "error") %> prohibited this publication from being saved:</h2>
+
+      <ul>
+      <% publication.errors.full_messages.each do |message| %>
+        <li><%= message %></li>
+      <% end %>
+      </ul>
+    </div>
+  <% end %>
+
+  <div class="field">
+    <%= form.label :title %>
+    <%= form.text_field :title, id: :publication_title %>
+  </div>
+
+  <div class="field">
+    <%= form.label :journal %>
+    <%= form.text_field :journal, id: :publication_journal %>
+  </div>
+
+  <div class="field">
+    <%= form.label :publisher %>
+    <%= form.text_field :publisher, id: :publication_publisher %>
+  </div>
+
+  <div class="field">
+    <%= form.label :publish_date %>
+    <%= form.date_select :publish_date, id: :publication_publish_date %>
+  </div>
+
+  <div class="field">
+    <%= form.label :other_contributors %>
+    <%= form.text_field :other_contributors, id: :publication_other_contributors %>
+  </div>
+
+  <div class="actions">
+    <%= form.submit %>
+  </div>
+<% end %>

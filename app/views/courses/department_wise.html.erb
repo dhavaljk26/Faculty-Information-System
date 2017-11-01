@@ -1,0 +1,34 @@
+<p id="notice"><%= notice %></p>
+
+<h1>Courses offered by <%= Department.find(@dept_id).name %> Department</h1>
+
+<table>
+  <thead>
+  <tr>
+    <th>Name</th>
+    <th>Credits</th>
+    <th>Ltp</th>
+    <th>Course type</th>
+    <th>Academic Degree</th>
+    <th colspan="3"></th>
+  </tr>
+  </thead>
+
+  <tbody>
+  <% Course.where(:department_id => @dept_id).each do |course| %>
+      <tr>
+        <td><%= course.name %></td>
+        <td><%= course.credits %></td>
+        <td><%= course.ltp %></td>
+        <td><%= course.course_type %></td>
+        <td><%= course.academic_degree.name %></td>
+        <td><%= link_to 'Show', course %></td>
+        <td><%= link_to 'Edit', edit_course_path(course) %></td>
+        <td><%= link_to 'Destroy', course, method: :delete, data: { confirm: 'Are you sure?' } %></td>
+      </tr>
+  <% end %>
+  </tbody>
+</table>
+
+<br>
+<%= link_to "Back", courses_path%>

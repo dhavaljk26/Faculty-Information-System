@@ -1,0 +1,23 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>Faculty Information System</title>
+    <%= csrf_meta_tags %>
+
+    <%= stylesheet_link_tag    'application', media: 'all', 'data-turbolinks-track': 'reload' %>
+    <%= javascript_include_tag 'application', 'data-turbolinks-track': 'reload' %>
+  </head>
+
+  <body>
+
+    <% if logged_in? %>
+        <div style='float: right;'>
+          Logged in as <%= current_faculty.first_name %> <%= current_faculty.last_name %>|
+          <%= link_to "Logout", logout_path, method: :delete %>
+        </div>
+    <% end %>
+
+
+    <%= yield %>
+  </body>
+</html>

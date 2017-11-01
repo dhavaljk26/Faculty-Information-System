@@ -1,0 +1,51 @@
+# Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
+
+one:
+  first_name: MyString
+  middle_name: MyString
+  last_name: MyString
+  designation: MyString
+  joining_date: 2017-11-01
+  office_phone_no: MyString
+  mobile_no: MyString
+  birth_date: 2017-11-01
+  gender: MyString
+  office_address_locality: MyString
+  office_address_city: MyString
+  office_address_state: MyString
+  office_address_country: MyString
+  office_address_pin_code: 1
+  home_address_locality: MyString
+  home_address_city: MyString
+  home_address_state: MyString
+  home_address_country: MyString
+  home_address_pin_code: 1
+  email: MyString
+  password_digest: MyString
+  department: one
+  admin: false
+
+two:
+  first_name: MyString
+  middle_name: MyString
+  last_name: MyString
+  designation: MyString
+  joining_date: 2017-11-01
+  office_phone_no: MyString
+  mobile_no: MyString
+  birth_date: 2017-11-01
+  gender: MyString
+  office_address_locality: MyString
+  office_address_city: MyString
+  office_address_state: MyString
+  office_address_country: MyString
+  office_address_pin_code: 1
+  home_address_locality: MyString
+  home_address_city: MyString
+  home_address_state: MyString
+  home_address_country: MyString
+  home_address_pin_code: 1
+  email: MyString
+  password_digest: MyString
+  department: two
+  admin: false

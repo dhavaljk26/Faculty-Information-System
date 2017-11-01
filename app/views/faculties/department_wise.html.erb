@@ -1,0 +1,45 @@
+<p id="notice"><%= notice %></p>
+
+<h1>Faculties in <%= Department.find(@dept_id).name %> Department</h1>
+
+<table>
+  <thead>
+  <tr>
+    <th>First name</th>
+    <th>Middle name</th>
+    <th>Last name</th>
+    <th>Designation</th>
+    <th>Joining date</th>
+    <th>Office phone no</th>
+    <th>Mobile no</th>
+    <th>Birth date</th>
+    <th>Gender</th>
+    <th>Email</th>
+    <th colspan="3"></th>
+  </tr>
+  </thead>
+
+  <tbody>
+  <% Faculty.where(:department_id => @dept_id).each do |faculty| %>
+      <tr>
+        <td><%= faculty.first_name %></td>
+        <td><%= faculty.middle_name %></td>
+        <td><%= faculty.last_name %></td>
+        <td><%= faculty.designation %></td>
+        <td><%= faculty.joining_date %></td>
+        <td><%= faculty.office_phone_no %></td>
+        <td><%= faculty.mobile_no %></td>
+        <td><%= faculty.birth_date %></td>
+        <td><%= faculty.gender %></td>
+        <td><%= faculty.email %></td>
+        <td><%= link_to 'Show', faculty %></td>
+        <td><%= link_to 'Edit', edit_faculty_path(faculty) %></td>
+        <td><%= link_to 'Destroy', faculty, method: :delete, data: { confirm: 'Are you sure?' } %></td>
+      </tr>
+  <% end %>
+  </tbody>
+</table>
+
+<br>
+
+<%= link_to 'Back', faculties_path%>

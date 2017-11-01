@@ -1,0 +1,41 @@
+<p id="notice"><%= notice %></p>
+
+<h1>Academic Degrees</h1>
+
+<table>
+  <thead>
+    <tr>
+      <th>Name</th>
+      <th>Programme</th>
+      <th>Minimum Duration(Years)</th>
+      <th colspan="3"></th>
+    </tr>
+  </thead>
+
+  <tbody>
+    <% @academic_degrees.each do |academic_degree| %>
+      <tr>
+        <td><%= academic_degree.name %></td>
+        <td><%= academic_degree.programme %></td>
+        <td><%= academic_degree.min_duration %></td>
+        <td><%= link_to 'Show', academic_degree %></td>
+        <td><%= link_to 'Edit', edit_academic_degree_path(academic_degree) %></td>
+        <td><%= link_to 'Destroy', academic_degree, method: :delete, data: { confirm: 'Are you sure?' } %></td>
+      </tr>
+    <% end %>
+  </tbody>
+</table>
+
+<br>
+
+<%= link_to 'New Academic Degree', new_academic_degree_path %>
+
+
+<%= form_tag :action => 'programme_wise'  do %>
+
+    <h3>Search Academic Degrees by Programme</h3>
+    <p>Select Programme</p>
+    <%= select("academic_degree", "programme", AcademicDegree.pluck(:programme).uniq) %>
+    <%= submit_tag("Submit") %>
+
+<% end %>

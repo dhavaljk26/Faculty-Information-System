@@ -1,0 +1,47 @@
+<%= form_with(model: project, local: true) do |form| %>
+  <% if project.errors.any? %>
+    <div id="error_explanation">
+      <h2><%= pluralize(project.errors.count, "error") %> prohibited this project from being saved:</h2>
+
+      <ul>
+      <% project.errors.full_messages.each do |message| %>
+        <li><%= message %></li>
+      <% end %>
+      </ul>
+    </div>
+  <% end %>
+
+  <div class="field">
+    <%= form.label :title %>
+    <%= form.text_field :title, id: :project_title %>
+  </div>
+
+  <div class="field">
+    <%= form.label :description %>
+    <%= form.text_area :description, id: :project_description %>
+  </div>
+
+  <div class="field">
+    <%= form.label :funding_agency %>
+    <%= form.text_field :funding_agency, id: :project_funding_agency %>
+  </div>
+
+  <div class="field">
+    <%= form.label :fund_amount %>
+    <%= form.number_field :fund_amount, id: :project_fund_amount %>
+  </div>
+
+  <div class="field">
+    <%= form.label :due_date %>
+    <%= form.date_select :due_date, id: :project_due_date %>
+  </div>
+
+  <div class="field">
+    <%= form.label :other_contributors %>
+    <%= form.text_field :other_contributors, id: :project_other_contributors %>
+  </div>
+
+  <div class="actions">
+    <%= form.submit %>
+  </div>
+<% end %>

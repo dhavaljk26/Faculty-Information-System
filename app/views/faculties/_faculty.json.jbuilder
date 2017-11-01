@@ -1,0 +1,2 @@
+json.extract! faculty, :id, :first_name, :middle_name, :last_name, :designation, :joining_date, :office_phone_no, :mobile_no, :birth_date, :gender, :office_address_locality, :office_address_city, :office_address_state, :office_address_country, :office_address_pin_code, :home_address_locality, :home_address_city, :home_address_state, :home_address_country, :home_address_pin_code, :email, :password_digest, :department_id, :admin, :created_at, :updated_at
+json.url faculty_url(faculty, format: :json)

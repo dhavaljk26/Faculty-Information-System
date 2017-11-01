@@ -1,0 +1,6 @@
+<div class="achievement">
+  <div>
+    <%= content_tag :li, "#{achievement.description}"%>
+    <%= link_to "Delete", [@faculty, achievement], method: :delete %>
+  </div>
+</div>

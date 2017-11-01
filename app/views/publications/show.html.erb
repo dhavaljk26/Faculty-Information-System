@@ -1,0 +1,29 @@
+<p id="notice"><%= notice %></p>
+
+<p>
+  <strong>Title:</strong>
+  <%= @publication.title %>
+</p>
+
+<p>
+  <strong>Journal:</strong>
+  <%= @publication.journal %>
+</p>
+
+<p>
+  <strong>Publisher:</strong>
+  <%= @publication.publisher %>
+</p>
+
+<p>
+  <strong>Publish date:</strong>
+  <%= @publication.publish_date %>
+</p>
+
+<p>
+  <strong>Other contributors:</strong>
+  <%= @publication.other_contributors %>
+</p>
+
+<%= link_to 'Edit', edit_publication_path(@publication) %> |
+<%= link_to 'Back', publications_path %>

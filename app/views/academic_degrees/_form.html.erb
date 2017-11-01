@@ -1,0 +1,32 @@
+<%= form_with(model: academic_degree, local: true) do |form| %>
+  <% if academic_degree.errors.any? %>
+    <div id="error_explanation">
+      <h2><%= pluralize(academic_degree.errors.count, "error") %> prohibited this academic_degree from being saved:</h2>
+
+      <ul>
+      <% academic_degree.errors.full_messages.each do |message| %>
+        <li><%= message %></li>
+      <% end %>
+      </ul>
+    </div>
+  <% end %>
+
+  <div class="field">
+    <%= form.label :name %>
+    <%= form.text_field :name, id: :academic_degree_name %>
+  </div>
+
+  <div class="field">
+    <%= form.label :programme %>
+    <%= form.text_field :programme, id: :academic_degree_programme %>
+  </div>
+
+  <div class="field">
+    <%= form.label :min_duration_in_years %>
+    <%= form.number_field :min_duration, id: :academic_degree_min_duration %>
+  </div>
+
+  <div class="actions">
+    <%= form.submit %>
+  </div>
+<% end %>
