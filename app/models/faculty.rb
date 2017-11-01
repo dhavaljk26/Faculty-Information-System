@@ -4,10 +4,11 @@ class Faculty < ApplicationRecord
 
   belongs_to :department
 
-  has_many :achievements, :dependent => :destroy
-  has_many :experiences, :dependent => :destroy
-  has_many :qualifications, :dependent => :destroy
-  has_many :interest_areas, :dependent => :destroy
+  has_many :achievements, :dependent => :delete_all
+  has_many :experiences, :dependent => :delete_all
+  has_many :qualifications, :dependent => :delete_all
+  has_many :interest_areas, :dependent => :delete_all
+  has_many :leave_applications, :dependent => :delete_all
 
   has_and_belongs_to_many :projects
   has_and_belongs_to_many :publications

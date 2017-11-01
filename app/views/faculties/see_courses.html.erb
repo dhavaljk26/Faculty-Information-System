@@ -1,0 +1,49 @@
+<h1>Courses taken by <%= @faculty.first_name%> <%= @faculty.last_name%> </h1>
+
+<table>
+  <thead>
+  <tr>
+    <th>Name</th>
+    <th>Credits</th>
+    <th>LTP</th>
+    <th>Course Type</th>
+    <th>Academic Degree</th>
+    <th>Department</th>
+    <th colspan="3"></th>
+  </tr>
+  </thead>
+
+  <tbody>
+  <% @faculty.courses.each do |course| %>
+      <tr>
+        <td><%= course.name %></td>
+        <td><%= course.credits %></td>
+        <td><%= course.ltp %></td>
+        <td><%= course.course_type %></td>
+        <td><%= course.academic_degree.name %></td>
+        <td><%= course.department.name %></td>
+      </tr>
+  <% end %>
+  </tbody>
+</table>
+
+
+<%= form_tag :action => 'add_course'  do %>
+
+    <h4>Select Course to Add</h4>
+    <%= select("add", "add_course_id", Course.all.collect {|p| [ p.name, p.id ] }) %>
+    <%= submit_tag("Add") %>
+
+<% end %>
+
+<%= form_tag :action => 'del_course'  do %>
+
+    <h4>Select Course to Remove</h4>
+    <%= select("del", "del_course_id", @faculty.courses.collect {|p| [ p.name, p.id ] }) %>
+    <%= submit_tag("Remove") %>
+
+<% end %>
+<br>
+
+<br>
+<%= link_to 'Back', faculty_path%>

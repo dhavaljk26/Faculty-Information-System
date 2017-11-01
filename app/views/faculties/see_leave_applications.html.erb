@@ -1,0 +1,62 @@
+
+<h1>Leave Applications</h1>
+
+<table>
+  <thead>
+  <tr>
+    <th>Leaving Date</th>
+    <th>No of Days</th>
+    <th>Reason</th>
+    <th>Approved</th>
+    <th colspan="3"></th>
+  </tr>
+  </thead>
+
+  <tbody>
+  <% @faculty.leave_applications.each do |leave_application| %>
+      <tr>
+        <div id="leave_applications">
+          <td><%= leave_application.leaving_date %></td>
+          <td><%= leave_application.no_of_days %></td>
+          <td><%= leave_application.reason %></td>
+          <td>
+            <% if leave_application.approved %>
+                <%= 'Approved' %>
+            <% else %>
+                <%= 'Not Approved' %>
+            <% end %>
+          </td>
+
+          <td><%= link_to "Delete", [@faculty, leave_application], method: :delete %></td>
+        </div>
+      </tr>
+  <% end %>
+  </tbody>
+</table>
+
+<br>
+
+<h3>Form for New Leave Application</h3>
+<div>
+  <%= form_for([@faculty, @faculty.leave_applications.new]) do |f| %>
+
+      <div class="field">
+        <%= f.label :leaving_date %>
+        <%= f.date_select :leaving_date %>
+      </div>
+
+      <div class="field">
+        <%= f.label :no_of_days %>
+        <%= f.number_field :no_of_days%>
+      </div>
+
+      <div class="field">
+        <%= f.label :reason %>
+        <%= f.text_field :reason %>
+      </div>
+
+      <div class="actions">
+        <%= f.submit "Submit" %>
+      </div>
+  <% end %>
+</div>

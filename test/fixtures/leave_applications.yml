@@ -2,14 +2,14 @@
 
 one:
   faculty: one
-  leaving_date: 2017-11-01
+  leaving_date: 2017-11-02
   no_of_days: 1
   reason: MyText
   approved: false
 
 two:
   faculty: two
-  leaving_date: 2017-11-01
+  leaving_date: 2017-11-02
   no_of_days: 1
   reason: MyText
   approved: false

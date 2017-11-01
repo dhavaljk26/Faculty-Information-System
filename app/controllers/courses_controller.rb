@@ -1,5 +1,20 @@
 class CoursesController < ApplicationController
-  before_action :set_course, only: [:show, :edit, :update, :destroy]
+  before_action :set_course, only: [:show, :edit, :update, :destroy, :add_faculty, :del_faculty]
+
+  def add_faculty
+
+    if @course.faculties.pluck(:id).include?(Integer(params[:add][:add_faculty_id]))
+      redirect_to @course, notice: "Faculty is already added!"
+    else
+      @course.faculties << Faculty.find(Integer(params[:add][:add_faculty_id]))
+      redirect_to @course, notice: "Faculty added successfully!"
+    end
+  end
+
+  def del_faculty
+    @course.faculties.destroy(Faculty.find(Integer(params[:del][:del_faculty_id])))
+    redirect_to @course, notice: "Faculty removed successfully!"
+  end
 
   def department_wise
     if request.post?

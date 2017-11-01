@@ -10,8 +10,13 @@
 
   <body>
 
-    <% if logged_in? %>
+  <% flash.each do |key, value| %>
+      <p id='<%= key %>'><%= value %></p>
+  <% end %>
+
+  <% if logged_in? %>
         <div style='float: right;'>
+          <%= link_to "Profile",  faculty_path(current_faculty.id) %>
           Logged in as <%= current_faculty.first_name %> <%= current_faculty.last_name %>|
           <%= link_to "Logout", logout_path, method: :delete %>
         </div>

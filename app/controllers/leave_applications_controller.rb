@@ -1,74 +1,27 @@
 class LeaveApplicationsController < ApplicationController
-  before_action :set_leave_application, only: [:show, :edit, :update, :destroy]
+  before_action :set_faculty, only: [:create, :destroy]
 
-  # GET /leave_applications
-  # GET /leave_applications.json
-  def index
-    @leave_applications = LeaveApplication.all
-  end
-
-  # GET /leave_applications/1
-  # GET /leave_applications/1.json
-  def show
-  end
-
-  # GET /leave_applications/new
-  def new
-    @leave_application = LeaveApplication.new
-  end
-
-  # GET /leave_applications/1/edit
-  def edit
-  end
-
-  # POST /leave_applications
-  # POST /leave_applications.json
   def create
-    @leave_application = LeaveApplication.new(leave_application_params)
-
-    respond_to do |format|
-      if @leave_application.save
-        format.html { redirect_to @leave_application, notice: 'Leave application was successfully created.' }
-        format.json { render :show, status: :created, location: @leave_application }
-      else
-        format.html { render :new }
-        format.json { render json: @leave_application.errors, status: :unprocessable_entity }
-      end
+    @leave_application = @faculty.leave_applications.new(leave_application_params)
+    if @leave_application.save
+      redirect_to "/faculties/#{@faculty.id}/see_leave_applications", notice: "Leave Application successfully submitted!"
+    else
+      redirect_to "/faculties/#{@faculty.id}/see_leave_applications", alert: "Unable to submit Leave Application!"
     end
   end
 
-  # PATCH/PUT /leave_applications/1
-  # PATCH/PUT /leave_applications/1.json
-  def update
-    respond_to do |format|
-      if @leave_application.update(leave_application_params)
-        format.html { redirect_to @leave_application, notice: 'Leave application was successfully updated.' }
-        format.json { render :show, status: :ok, location: @leave_application }
-      else
-        format.html { render :edit }
-        format.json { render json: @leave_application.errors, status: :unprocessable_entity }
-      end
-    end
-  end
-
-  # DELETE /leave_applications/1
-  # DELETE /leave_applications/1.json
   def destroy
+    @leave_application = @faculty.leave_applications.find(params[:id])
     @leave_application.destroy
-    respond_to do |format|
-      format.html { redirect_to leave_applications_url, notice: 'Leave application was successfully destroyed.' }
-      format.json { head :no_content }
-    end
+    redirect_to "/faculties/#{@faculty.id}/see_leave_applications", notice: "Application deleted!"
   end
 
   private
-    # Use callbacks to share common setup or constraints between actions.
-    def set_leave_application
-      @leave_application = LeaveApplication.find(params[:id])
-    end
+  def set_faculty
+    @faculty = Faculty.find(params[:faculty_id])
+  end
 
-    # Never trust parameters from the scary internet, only allow the white list through.
-    def leave_application_params
-      params.require(:leave_application).permit(:faculty_id, :leaving_date, :no_of_days, :reason, :approved)
-    end
+  def leave_application_params
+    params.require(:leave_application).permit(:leaving_date, :no_of_days, :reason, :approved)
+  end
 end

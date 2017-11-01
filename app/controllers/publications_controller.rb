@@ -1,6 +1,20 @@
 class PublicationsController < ApplicationController
-  before_action :set_publication, only: [:show, :edit, :update, :destroy]
+  before_action :set_publication, only: [:show, :edit, :update, :destroy, :add_faculty, :del_faculty]
 
+  def add_faculty
+
+    if @publication.faculties.pluck(:id).include?(Integer(params[:add][:add_faculty_id]))
+      redirect_to @publication, notice: "Faculty is already added!"
+    else
+      @publication.faculties << Faculty.find(Integer(params[:add][:add_faculty_id]))
+      redirect_to @publication, notice: "Faculty added successfully!"
+    end
+  end
+
+  def del_faculty
+    @publication.faculties.destroy(Faculty.find(Integer(params[:del][:del_faculty_id])))
+    redirect_to @publication, notice: "Faculty removed successfully!"
+  end
   # GET /publications
   # GET /publications.json
   def index

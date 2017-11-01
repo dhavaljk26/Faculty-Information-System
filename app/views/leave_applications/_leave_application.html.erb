@@ -1,0 +1,16 @@
+<div class="leave_application">
+  <div>
+    <td><%= leave_application.leaving_date %></td>
+    <td><%= leave_application.no_of_days %></td>
+    <td><%= leave_application.reason %></td>
+    <td>
+      <% if leave_application.approved %>
+          <%= 'Approved' %>
+      <% else %>
+          <%= 'Not Approved' %>
+      <% end %>
+    </td>
+
+    <td><%= link_to "Delete", [@faculty, leave_application], method: :delete %></td>
+  </div>
+</div>

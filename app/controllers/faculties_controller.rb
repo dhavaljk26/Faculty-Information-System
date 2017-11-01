@@ -1,10 +1,67 @@
 class FacultiesController < ApplicationController
-  before_action :set_faculty, only: [:show, :edit, :update, :destroy]
+  before_action :set_faculty, only: [:show, :edit, :update, :destroy, :see_projects, :add_project, :del_project, :see_courses, :add_course, :del_course, :see_publications, :add_publication, :del_publication, :see_leave_applications]
 
   def department_wise
     if request.post?
       @dept_id = params[:faculty][:department_id]
     end
+  end
+
+  def see_leave_applications
+  end
+
+  def see_projects
+  end
+
+  def add_project
+
+    if@faculty.projects.pluck(:id).include?(Integer(params[:add][:add_project_id]))
+      redirect_to "/faculties/#{@faculty.id}/see_projects", notice: "Project is already added!"
+    else
+      @faculty.projects << Project.find(Integer(params[:add][:add_project_id]))
+      redirect_to "/faculties/#{@faculty.id}/see_projects", notice: "Project added successfully!"
+    end
+  end
+
+  def del_project
+    @faculty.projects.destroy(Project.find(Integer(params[:del][:del_project_id])))
+    redirect_to "/faculties/#{@faculty.id}/see_projects", notice: "Project removed successfully!"
+  end
+
+  def see_publications
+  end
+
+  def add_publication
+
+    if@faculty.publications.pluck(:id).include?(Integer(params[:add][:add_publication_id]))
+      redirect_to "/faculties/#{@faculty.id}/see_publications", notice: "Publication is already added!"
+    else
+      @faculty.publications << Publication.find(Integer(params[:add][:add_publication_id]))
+      redirect_to "/faculties/#{@faculty.id}/see_publications", notice: "Publication added successfully!"
+    end
+  end
+
+  def del_publication
+    @faculty.publications.destroy(Publication.find(Integer(params[:del][:del_publication_id])))
+    redirect_to "/faculties/#{@faculty.id}/see_publications", notice: "Publication removed successfully!"
+  end
+
+  def see_courses
+  end
+
+  def add_course
+
+    if@faculty.courses.pluck(:id).include?(Integer(params[:add][:add_course_id]))
+      redirect_to "/faculties/#{@faculty.id}/see_courses", notice: "Course is already added!"
+    else
+      @faculty.courses << Course.find(Integer(params[:add][:add_course_id]))
+      redirect_to "/faculties/#{@faculty.id}/see_courses", notice: "Course added successfully!"
+    end
+  end
+
+  def del_course
+    @faculty.courses.destroy(Course.find(Integer(params[:del][:del_course_id])))
+    redirect_to "/faculties/#{@faculty.id}/see_courses", notice: "Course removed successfully!"
   end
   # GET /faculties
   # GET /faculties.json
