@@ -8,14 +8,14 @@ class SessionsController < ApplicationController
 
     if faculty && faculty.authenticate(password)
       session[:faculty_id] = faculty.id
-      redirect_to login_path, notice: "Logged in successfully"
+      redirect_to root_path, notice: "Logged in successfully"
     else
-      redirect_to login_path, alert: "Invalid username/password combination"
+      redirect_to root_path, alert: "Invalid username/password combination"
     end
   end
 
   def destroy
     reset_session
-    redirect_to login_path, notice: "You have been logged out"
+    redirect_to root_path, notice: "You have been logged out"
   end
 end
