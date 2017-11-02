@@ -1,16 +1,28 @@
-<h2>Faculty Information System</h2>
-<br>
-<br>
 
+<style>
+  .button {
+    background-color: #41adaf;
+    border: none;
+    color: white;
+    padding: 10px 32px;
+    text-align: center;
+    text-decoration: none;
+    display: inline-block;
+    font-size: 16px;
+    margin: 4px 2px;
+    cursor: pointer;
+  }
+</style>
+<div class="jumbotron text-center" style="background: #34f461;">
+  <h2>Faculty Information System</h2>
+</div>
 <div>
-  <div><%= link_to 'Departments', departments_path %> </div>
-  <div><%= link_to 'Academic Degrees', academic_degrees_path %></div>
-  <div><%= link_to 'Courses', courses_path %></div>
-  <div><%= link_to 'Faculties', faculties_path %></div>
-  <div><%= link_to 'Faculty Leave Applications', approve_leaves_path %></div>
-  <div><%= link_to 'Projects', projects_path %></div>
-  <div><%= link_to 'Publications', publications_path %></div>
-
-
+  <div type="button" class="button"><%= link_to 'Departments', departments_path %> </div>
+  <div type="button" class="button"><%= link_to 'Academic Degrees', academic_degrees_path %></div>
+  <div type="button" class="button"><%= link_to 'Courses', courses_path %></div>
+  <div type="button" class="button"><%= link_to 'Faculties', faculties_path %></div>
+  <div type="button" class="button"><%= link_to 'Projects', projects_path %></div>
+  <div type="button" class="button"><%= link_to 'Publications', publications_path %></div>
+  <div type="button" class="button"><%= link_to 'Faculty Leave Applications', approve_leaves_path %></div>
 </div>
 
