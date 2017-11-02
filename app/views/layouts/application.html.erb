@@ -20,7 +20,11 @@
     <div id="head1">
       <% if logged_in? %>
           <div style='float: right;'>
+<<<<<<< HEAD
             <% link_to "Home", root_path%>
+=======
+            <%= link_to "Home",  root_path %>
+>>>>>>> 2a81ffd3ba75a1c336a972d331dd322f06026dbe
             <%= link_to "Profile",  faculty_path(current_faculty.id) %>
             Logged in as <%= current_faculty.first_name %> <%= current_faculty.last_name %>|
             <%= link_to "Logout", logout_path, method: :delete %>

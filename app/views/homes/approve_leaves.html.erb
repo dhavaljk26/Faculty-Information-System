@@ -4,6 +4,8 @@
 <table>
   <thead>
   <tr>
+    <th>Faculty Name</th>
+    <th>Department</th>
     <th>Leaving Date</th>
     <th>No of Days</th>
     <th>Reason</th>
@@ -16,6 +18,8 @@
   <% LeaveApplication.all.each do |leave_application| %>
       <tr>
         <div id="leave_applications">
+          <td><%= leave_application.faculty.first_name%> <%= leave_application.faculty.last_name%></td>
+          <td><%= leave_application.faculty.department.name %></td>
           <td><%= leave_application.leaving_date %></td>
           <td><%= leave_application.no_of_days %></td>
           <td><%= leave_application.reason %></td>
