@@ -1,0 +1,40 @@
+
+<h1>Leave Applications</h1>
+
+<table>
+  <thead>
+  <tr>
+    <th>Leaving Date</th>
+    <th>No of Days</th>
+    <th>Reason</th>
+    <th>Approved</th>
+    <th colspan="3"></th>
+  </tr>
+  </thead>
+
+  <tbody>
+  <% LeaveApplication.all.each do |leave_application| %>
+      <tr>
+        <div id="leave_applications">
+          <td><%= leave_application.leaving_date %></td>
+          <td><%= leave_application.no_of_days %></td>
+          <td><%= leave_application.reason %></td>
+          <td>
+            <% if leave_application.approved %>
+                <%= 'Approved' %>
+            <% else %>
+                <%= 'Not Approved' %>
+            <% end %>
+          </td>
+          <td>
+            <%= button_to 'Approve', {:controller => "homes", :action => "approve_leaves", :al_id => leave_application.id} , :method=>:post  %>
+          </td>
+
+        </div>
+      </tr>
+  <% end %>
+  </tbody>
+</table>
+
+<br>
+

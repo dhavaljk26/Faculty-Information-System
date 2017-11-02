@@ -1,6 +1,8 @@
 Rails.application.routes.draw do
 
   root 'homes#index'
+  get "/approve_leaves" => "homes#approve_leaves"
+  post "/approve_leaves" => "homes#approve_leaves"
 
   resources :courses do
 
