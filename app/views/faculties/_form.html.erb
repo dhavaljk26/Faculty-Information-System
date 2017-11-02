@@ -126,11 +126,6 @@
       <%= select("faculty", "department_id", Department.all.collect {|d| [ d.name, d.id ] }) %>
     </div>
 
-  <div class="field">
-    <%= form.label :admin %>
-    <%= form.check_box :admin, id: :faculty_admin %>
-  </div>
-
   <div class="actions">
     <%= form.submit %>
   </div>
