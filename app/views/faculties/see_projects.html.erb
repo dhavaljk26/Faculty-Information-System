@@ -1,6 +1,19 @@
-<h1>Projects of <%= @faculty.first_name%> <%= @faculty.last_name%> </h1>
+<br>
+<h2>Projects of <%= @faculty.first_name%> <%= @faculty.last_name%> </h2>
+<style>
+  table {
+    font-family: arial, sans-serif;
+    border-collapse: collapse;
+    width: 100%;
+  }
 
-<table>
+  td, th {
+    border: 1px solid #dddddd;
+    text-align: left;
+    padding: 8px;
+  }
+</style>
+<table style="width: 75%">
   <thead>
   <tr>
     <th>Title</th>
@@ -9,7 +22,6 @@
     <th>Fund amount</th>
     <th>Due date</th>
     <th>Other contributors</th>
-    <th colspan="3"></th>
   </tr>
   </thead>
 
@@ -27,21 +39,21 @@
   <% end %>
   </tbody>
 </table>
-
+<br><br>
 <%  if logged_in? and (current_faculty.admin or current_faculty.id == @faculty.id) %>
   <%= form_tag :action => 'add_project'  do %>
 
-      <h4>Select Project to Add</h4>
+      <h5>Select Project to Add</h5>
       <%= select("add", "add_project_id", Project.all.collect {|p| [ p.title, p.id ] }) %>
-      <%= submit_tag("Add") %>
+      <span style="margin-left: 12px"><%= submit_tag("Add") %></span>
 
   <% end %>
-
+<br>
   <%= form_tag :action => 'del_project'  do %>
 
-      <h4>Select Project to Remove</h4>
+      <h5>Select Project to Remove</h5>
       <%= select("del", "del_project_id", @faculty.projects.collect {|p| [ p.title, p.id ] }) %>
-      <%= submit_tag("Remove") %>
+      <span style="margin-left: 12px"><%= submit_tag("Remove") %></span>
 
   <% end %>
 

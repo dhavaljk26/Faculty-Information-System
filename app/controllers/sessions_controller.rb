@@ -6,7 +6,7 @@ class SessionsController < ApplicationController
     faculty = Faculty.find_by(email: params[:faculty][:email])
     password = params[:faculty][:password]
 
-    if faculty && faculty.authenticate(password)
+     if faculty && faculty.authenticate(password)
       session[:faculty_id] = faculty.id
       redirect_to root_path, notice: "Logged in successfully"
     else

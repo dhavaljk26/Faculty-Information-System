@@ -1,13 +1,29 @@
 
 <h1>Academic Degrees</h1>
+<style>
+table {
+font-family: arial, sans-serif;
+border-collapse: collapse;
+width: 100%;
+}
 
-<table>
+td, th {
+border: 1px solid #dddddd;
+text-align: left;
+padding: 8px;
+}
+
+tr:nth-child(even) {
+background-color: #dddddd;
+}
+</style>
+<table style="width:75%">
   <thead>
     <tr>
       <th>Name</th>
       <th>Programme</th>
       <th>Minimum Duration(Years)</th>
-      <th colspan="3"></th>
+
     </tr>
   </thead>
 
@@ -33,11 +49,12 @@
   <%= link_to 'New Academic Degree', new_academic_degree_path %>
 <% end %>
 
+<br><br><br>
 <%= form_tag :action => 'programme_wise'  do %>
 
-    <h3>Search Academic Degrees by Programme</h3>
-    <p>Select Programme</p>
+    <h4><i>Search Academic Degrees by Programme</i></h4>
+    <h6>Select Programme</h6>
     <%= select("academic_degree", "programme", AcademicDegree.pluck(:programme).uniq) %>
-    <%= submit_tag("Submit") %>
+    <span style="margin-left: 8px"><%= submit_tag("Submit") %></span>
 
 <% end %>

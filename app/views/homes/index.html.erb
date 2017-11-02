@@ -1,28 +1,38 @@
 
+<br><br>
 <style>
   .button {
-    background-color: #41adaf;
-    border: none;
+    background-color: #4723af;
     color: white;
-    padding: 10px 32px;
+    padding: 25px 25px;
     text-align: center;
-    text-decoration: none;
-    display: inline-block;
     font-size: 16px;
-    margin: 4px 2px;
     cursor: pointer;
+    margin-bottom: 15px;
   }
 </style>
-<div class="jumbotron text-center" style="background: #34f461;">
-  <h2>Faculty Information System</h2>
-</div>
-<div>
-  <div type="button" class="button"><%= link_to 'Departments', departments_path %> </div>
-  <div type="button" class="button"><%= link_to 'Academic Degrees', academic_degrees_path %></div>
-  <div type="button" class="button"><%= link_to 'Courses', courses_path %></div>
-  <div type="button" class="button"><%= link_to 'Faculties', faculties_path %></div>
-  <div type="button" class="button"><%= link_to 'Projects', projects_path %></div>
-  <div type="button" class="button"><%= link_to 'Publications', publications_path %></div>
-  <div type="button" class="button"><%= link_to 'Faculty Leave Applications', approve_leaves_path %></div>
-</div>
+<body>
+  <div class="jumbotron text-center container" style="background: #112d32;">
+    <h1 style="color: #f4fcf3;"><strong>Faculty Information System</strong></h1>
+  </div>
+  <div>
+  <div class="container">
+    <div class="row">
+      <div type="button" class="button col-md-4"><%= link_to 'Departments', departments_path ,{style:'color:#FFFFFF'}%> </div>
+      <div type="button" class="button col-md-4"><%= link_to 'Academic Degrees', academic_degrees_path,{style:'color:#FFFFFF'} %></div>
+      <div type="button" class="button col-md-4"><%= link_to 'Courses', courses_path,{style:'color:#FFFFFF'} %></div>
+    </div>
 
+    <div class="row">
+      <div type="button" class="button col-md-4"><%= link_to 'Faculties', faculties_path ,{style:'color:#FFFFFF'}%></div>
+      <div type="button" class="button col-md-4"><%= link_to 'Projects', projects_path,{style:'color:#FFFFFF'} %></div>
+      <div type="button" class="button col-md-4"><%= link_to 'Publications', publications_path ,{style:'color:#FFFFFF'}%></div>
+      <%if logged_in? and current_faculty.admin%>
+        <div type="button" class="button col-md-4"><%= link_to 'Faculty Leave Applications', approve_leaves_path ,{style:'color:#FFFFFF'}%>
+        </div>
+      <%end%>
+    </div>
+
+  </div>
+  </div>
+</body>

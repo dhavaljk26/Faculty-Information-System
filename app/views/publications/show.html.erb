@@ -1,36 +1,50 @@
+<br><br>
+<style>
+  table {
+    font-family: arial, sans-serif;
+    border-collapse: collapse;
+    width: 100%;
+  }
 
-<p>
-  <strong>Title:</strong>
-  <%= @publication.title %>
-</p>
+  td, th {
+    border: 1px solid #dddddd;
+    text-align: left;
+    padding: 8px;
+  }
+</style>
+<table style="width: 50%">
+  <tr>
+    <th><strong>Title:</strong></th>
+    <td><%= @publication.title %></td>
+  </tr>
 
-<p>
-  <strong>Journal:</strong>
-  <%= @publication.journal %>
-</p>
+  <tr>
+    <th><strong>Journal:</strong></th>
+    <td><%= @publication.journal %></td>
+  </tr>
 
-<p>
-  <strong>Publisher:</strong>
-  <%= @publication.publisher %>
-</p>
+  <tr>
+    <th><strong>Publisher:</strong></th>
+    <td><%= @publication.publisher %></td>
+  </tr>
 
-<p>
-  <strong>Publish date:</strong>
-  <%= @publication.publish_date %>
-</p>
+  <tr>
+    <th><strong>Publish date:</strong></th>
+    <td><%= @publication.publish_date %></td>
+  </tr>
 
-<p>
-  <strong>Other contributors:</strong>
-  <%= @publication.other_contributors %>
-</p>
-
+  <tr>
+    <th><strong>Other contributors:</strong></th>
+    <td><%= @publication.other_contributors %></td>
+  </tr>
+</table>
 <%= link_to 'Edit', edit_publication_path(@publication) if logged_in? and current_faculty.admin %>
 
-
+<br><br>
 
 <h2>Faculties involved in this Publication</h2>
 
-<table>
+<table style="width: 50%">
   <thead>
   <tr>
     <th>First name</th>
@@ -38,7 +52,6 @@
     <th>Designation</th>
     <th>Email</th>
     <th>Department</th>
-    <th colspan="3"></th>
   </tr>
   </thead>
 
@@ -60,17 +73,17 @@
 <% if logged_in? and current_faculty.admin  %>
   <%= form_tag :action => 'add_faculty'  do %>
 
-      <h4>Select Faculty to Add</h4>
+      <h5>Select Faculty to Add</h5>
       <%= select("add", "add_faculty_id", Faculty.all.collect {|f| [ f.first_name+" "+f.last_name, f.id ] }) %>
-      <%= submit_tag("Add") %>
+      <span style="margin-left: 12px"><%= submit_tag("Add") %></span>
 
   <% end %>
-
+<br>
   <%= form_tag :action => 'del_faculty'  do %>
 
-      <h4>Select Faculty to Remove</h4>
+      <h5>Select Faculty to Remove</h5>
       <%= select("del", "del_faculty_id", @publication.faculties.collect {|f| [ f.first_name+" "+f.last_name, f.id ] }) %>
-      <%= submit_tag("Remove") %>
+      <span style="margin-left: 12px"><%= submit_tag("Remove") %></span>
 
   <% end %>
   <br>

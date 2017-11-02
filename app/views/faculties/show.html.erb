@@ -1,133 +1,91 @@
-
-<p>
-  <strong>First name:</strong>
-  <%= @faculty.first_name %>
-</p>
-
-<p>
-  <strong>Middle name:</strong>
-  <%= @faculty.middle_name %>
-</p>
-
-<p>
-  <strong>Last name:</strong>
-  <%= @faculty.last_name %>
-</p>
-
-<p>
-  <strong>Designation:</strong>
-  <%= @faculty.designation %>
-</p>
-
-<p>
-  <strong>Joining date:</strong>
-  <%= @faculty.joining_date %>
-</p>
-
-<p>
-  <strong>Office phone no:</strong>
-  <%= @faculty.office_phone_no %>
-</p>
-
-<p>
-  <strong>Mobile no:</strong>
-  <%= @faculty.mobile_no %>
-</p>
-
-<p>
-  <strong>Birth date:</strong>
-  <%= @faculty.birth_date %>
-</p>
-
-<p>
-  <strong>Gender:</strong>
-  <%= @faculty.gender %>
-</p>
-
-<p>
-  <strong>Office address locality:</strong>
-  <%= @faculty.office_address_locality %>
-</p>
-
-<p>
-  <strong>Office address city:</strong>
-  <%= @faculty.office_address_city %>
-</p>
-
-<p>
-  <strong>Office address state:</strong>
-  <%= @faculty.office_address_state %>
-</p>
-
-<p>
-  <strong>Office address country:</strong>
-  <%= @faculty.office_address_country %>
-</p>
-
-<p>
-  <strong>Office address pin code:</strong>
+<strong class="h2">FACULTY PROFILE</strong>
+<br>
+<style>
+  *{
+    font-size: medium;
+  }
+  #tab, th, td {
+    border: 1px solid black;
+    border-collapse: collapse;
+  }
+  th, td {
+    padding: 5px;
+    text-align: left;
+  }
+</style>
+<br>
+<table id="tab" style="width:50%">
+  <tr>
+  <th>Name:</th>
+  <td>
+    <%= @faculty.first_name %>
+    <%= @faculty.middle_name %>
+    <%= @faculty.last_name %>
+  </td>
+  </tr><tr>
+  <th>Designation:</th>
+  <td><%= @faculty.designation %></td>
+  </tr><tr>
+  <th>Joining date:</th>
+  <td><%= @faculty.joining_date %></td>
+  </tr><tr>
+  <th>Office phone no:</th>
+  <td><%= @faculty.office_phone_no %></td>
+  </tr><tr>
+  <th>Mobile no:</th>
+  <td><%= @faculty.mobile_no %></td>
+  </tr><tr>
+  <th>Birth date:</th>
+  <td><%= @faculty.birth_date %></td>
+  </tr><tr>
+  <th>Gender:</th>
+  <td><%= @faculty.gender %></td>
+  </tr><tr>
+  <th>Office address:</th><br>
+  <td>
+  <%= @faculty.office_address_locality %>,<br>
+  <%= @faculty.office_address_city %>,
+  <%= @faculty.office_address_state %>,<br>
+  <%= @faculty.office_address_country %>-
   <%= @faculty.office_address_pin_code %>
-</p>
-
-<p>
-  <strong>Home address locality:</strong>
-  <%= @faculty.home_address_locality %>
-</p>
-
-<p>
-  <strong>Home address city:</strong>
-  <%= @faculty.home_address_city %>
-</p>
-
-<p>
-  <strong>Home address state:</strong>
-  <%= @faculty.home_address_state %>
-</p>
-
-<p>
-  <strong>Home address country:</strong>
-  <%= @faculty.home_address_country %>
-</p>
-
-<p>
-  <strong>Home address pin code:</strong>
+  </td>
+  </tr>
+  <tr>
+  <th>Home address:</th><br>
+  <td>
+  <%= @faculty.home_address_locality %>,<br>
+  <%= @faculty.home_address_city %>,
+  <%= @faculty.home_address_state %>,<br>
+  <%= @faculty.home_address_country %>-
   <%= @faculty.home_address_pin_code %>
-</p>
-
-<p>
-  <strong>Email:</strong>
-  <%= @faculty.email %>
-</p>
-
-<p>
-  <strong>Password:</strong>
-  <%= @faculty.password %>
-</p>
-
-<p>
-  <strong>Department:</strong>
-  <%= @faculty.department.name %>
-</p>
-
-<p>
-  <strong>Admin:</strong>
-  <% if @faculty.admin %>
+  </td></tr>
+  <tr>
+  <th>Email:</th>
+  <td><%= @faculty.email %></td>
+  </tr><tr>
+  <th>Department:</th>
+  <td><%= @faculty.department.name %></td>
+  </tr><tr>
+  <th>Admin:</th>
+  <td><% if @faculty.admin %>
       <%= 'Yes' %>
   <% else %>
       <%= 'No' %>
   <% end %>
-</p>
-
+  </td></tr>
 <% if logged_in? and (current_faculty.admin or current_faculty.id == @faculty.id) %>
   <%= link_to 'Edit details', edit_faculty_path(@faculty) %>
 <%end%>
-
-<h3>Achievements</h3>
-
+</table>
+<table  id="tab" style="width:50%">
+<br>
+<tr>
+<th><strong>Achievements</strong></th>
+<td>
 <div id="achievements">
   <%= render @faculty.achievements %>
 </div>
-
+</td>
 <% if logged_in? and (current_faculty.admin or current_faculty.id == @faculty.id)  %>
   <div>
     <%= form_for([@faculty, @faculty.achievements.new]) do |f| %>
@@ -142,10 +100,11 @@
     <% end %>
   </div>
 <% end %>
-
-<h3>Experiences</h3>
-
-<table>
+</tr>
+<tr>
+<th><strong>Experiences</strong></th>
+<td>
+<table style="font-size: small">
   <thead>
   <tr>
     <th>Description</th>
@@ -162,7 +121,7 @@
   </tr>
   </tbody>
 </table>
-
+</td>
 <% if logged_in? and (current_faculty.admin or current_faculty.id == @faculty.id) %>
   <div>
     <%= form_for([@faculty, @faculty.experiences.new]) do |f| %>
@@ -185,10 +144,11 @@
     <% end %>
   </div>
 <% end %>
-
-<h3>Qualifications</h3>
-
-<table>
+</tr>
+<tr>
+<th><strong>Qualifications</strong></th>
+<td>
+<table style="font-size: small">
   <thead>
   <tr>
     <th>Degree Name</th>
@@ -206,7 +166,7 @@
   </tr>
   </tbody>
 </table>
-
+</td>
 <%  if logged_in? and (current_faculty.admin or current_faculty.id == @faculty.id) %>
 <div>
   <%= form_for([@faculty, @faculty.qualifications.new]) do |f| %>
@@ -238,13 +198,15 @@
 </div>
 
 <% end %>
+</tr>
+<tr>
+<th><strong>Interest Areas</strong></th>
 
-<h3>Interest Areas</h3>
-
+  <td>
 <div id="interest_areas">
   <%= render @faculty.interest_areas %>
 </div>
-
+  </td>
 <% if logged_in? and (current_faculty.admin or current_faculty.id == @faculty.id) %>
   <div>
     <%= form_for([@faculty, @faculty.interest_areas.new]) do |f| %>
@@ -260,7 +222,10 @@
   </div>
 <% end %>
 <br>
+</tr>
+</table>
 
+<br><br>
 <%= link_to 'See Courses', see_courses_faculty_path %>
 <br>
 <%= link_to 'See Projects', see_projects_faculty_path %>

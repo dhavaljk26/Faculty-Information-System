@@ -1,35 +1,47 @@
 
-<p>
-  <strong>Name:</strong>
-  <%= @department.name %>
-</p>
+<br><br>
+<style>
+  table, th, td {
+    border: 1px solid black;
+    border-collapse: collapse;
+  }
+  th, td {
+    padding: 5px;
+    text-align: left;
+  }
+</style>
+<table style="width:40%">
+<tr>
+  <th><strong>Name:</strong></th>
+  <td><%= @department.name %></td>
+</tr>
 
-<p>
-  <strong>Department Type:</strong>
-  <%= @department.department_type %>
-</p>
+<tr>
+  <th><strong>Department Type:</strong></th>
+  <td><%= @department.department_type%></td>
+</tr>
 
-<p>
-  <strong>Department Head:</strong>
-  <% unless @department.department_head_id.nil?%>
+<tr>
+  <th><strong>Department Head:</strong></th>
+  <td><% unless @department.department_head_id.nil?%>
     <%= Faculty.find(@department.department_head_id).first_name %> <%= Faculty.find(@department.department_head_id).last_name %>
   <% else %>
     <%= 'Not Assigned'%>
-  <% end %>
-</p>
-
+  <% end %></td>
+</tr>
+</table>
+<br><br>
 <% if logged_in? and current_faculty.admin  %>
   <%= link_to 'Edit', edit_department_path(@department) %>
 <% end %>
-<h1>Academic Degrees offered by <%= @department.name%> Department</h1>
+<h4>Academic Degrees offered by <%= @department.name%> Department</h4>
 
-<table>
+<table style="width: 40%">
   <thead>
   <tr>
     <th>Name</th>
     <th>Programme</th>
     <th>Minimum Duration(Years)</th>
-    <th colspan="3"></th>
   </tr>
   </thead>
 
@@ -44,21 +56,21 @@
   <% end %>
   </tbody>
 </table>
-
+<br>
 <% if logged_in? and current_faculty.admin  %>
   <%= form_tag :action => 'add_academic_degree'  do %>
 
-      <h4>Select Course to Add</h4>
+      <h5>Select Course to Add</h5>
       <%= select("add", "add_academic_degree_id", AcademicDegree.all.collect {|d| [ d.name, d.id ] }) %>
-      <%= submit_tag("Add") %>
+        <span style="margin-left: 8px"><%= submit_tag("Add") %></span>
 
   <% end %>
-
+    <br>
   <%= form_tag :action => 'del_academic_degree'  do %>
 
-      <h4>Select Course to Remove</h4>
+      <h5>Select Course to Remove</h5>
       <%= select("del", "del_academic_degree_id", @department.academic_degrees.collect {|d| [ d.name, d.id ] }) %>
-      <%= submit_tag("Remove") %>
+      <span style="margin-left: 8px"><%= submit_tag("Remove") %></span>
 
   <% end %>
 <br>

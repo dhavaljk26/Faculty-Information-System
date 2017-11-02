@@ -18,20 +18,15 @@
 
   <header>
     <div id="head1">
+      <%= link_to "Home",  root_path %>
       <% if logged_in? %>
           <div style='float: right;'>
-<<<<<<< HEAD
-            <% link_to "Home", root_path%>
-=======
-            <%= link_to "Home",  root_path %>
->>>>>>> 2a81ffd3ba75a1c336a972d331dd322f06026dbe
             <%= link_to "Profile",  faculty_path(current_faculty.id) %>
             Logged in as <%= current_faculty.first_name %> <%= current_faculty.last_name %>|
             <%= link_to "Logout", logout_path, method: :delete %>
           </div>
       <% else %>
           <div style="float: right">
-            <br>
           <%= form_for(:faculty, url: sessions_path) do |f| %>
 
               <span class="field"><%= f.text_field :email , :placeholder => "Email "%></span>

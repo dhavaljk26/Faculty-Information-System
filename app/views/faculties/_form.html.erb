@@ -10,123 +10,139 @@
       </ul>
     </div>
   <% end %>
+    <style>
+      .row{
+        width:75%;
+      }
+        #butt{
+          size:50px;
+        }
+    </style>
+<br>
+    <div class="row">
+      <div class="field col-sm-3">
+        <%= form.label :first_name %>
+        <%= form.text_field :first_name, id: :faculty_first_name %>
+      </div>
 
-  <div class="field">
-    <%= form.label :first_name %>
-    <%= form.text_field :first_name, id: :faculty_first_name %>
-  </div>
+      <div class="field col-sm-3">
+        <%= form.label :middle_name %>
+        <%= form.text_field :middle_name, id: :faculty_middle_name %>
+      </div>
 
-  <div class="field">
-    <%= form.label :middle_name %>
-    <%= form.text_field :middle_name, id: :faculty_middle_name %>
-  </div>
+      <div class="field col-sm-3">
+        <%= form.label :last_name %>
+        <%= form.text_field :last_name, id: :faculty_last_name %>
+      </div>
 
-  <div class="field">
-    <%= form.label :last_name %>
-    <%= form.text_field :last_name, id: :faculty_last_name %>
-  </div>
+      <div class="field col-sm-3">
+        <%= form.label :designation %>
+        <%= form.text_field :designation, id: :faculty_designation %>
+      </div>
+    </div>
 
-  <div class="field">
-    <%= form.label :designation %>
-    <%= form.text_field :designation, id: :faculty_designation %>
-  </div>
-
-  <div class="field">
+    <div class="row">
+  <div class="field col-sm-3">
     <%= form.label :joining_date %>
     <%= form.date_select :joining_date, id: :faculty_joining_date %>
   </div>
 
-  <div class="field">
+  <div class="field col-sm-3">
     <%= form.label :office_phone_no %>
     <%= form.text_field :office_phone_no, id: :faculty_office_phone_no %>
   </div>
 
-  <div class="field">
+  <div class="field col-sm-3">
     <%= form.label :mobile_no %>
     <%= form.text_field :mobile_no, id: :faculty_mobile_no %>
   </div>
-
-  <div class="field">
+    </div>
+    <div class="row">
+  <div class="field col-sm-3">
     <%= form.label :birth_date %>
     <%= form.date_select :birth_date, id: :faculty_birth_date %>
   </div>
 
-  <div class="field">
+  <div class="field col-sm-3">
     <%= form.label :gender %>
     <%= form.text_field :gender, id: :faculty_gender %>
   </div>
-
-  <div class="field">
+    </div>
+    <div class="row">
+  <div class="field col-sm-4">
     <%= form.label :office_address_locality %>
     <%= form.text_field :office_address_locality, id: :faculty_office_address_locality %>
   </div>
 
-  <div class="field">
+  <div class="field col-sm-4">
     <%= form.label :office_address_city %>
     <%= form.text_field :office_address_city, id: :faculty_office_address_city %>
   </div>
 
-  <div class="field">
+  <div class="field col-sm-4">
     <%= form.label :office_address_state %>
     <%= form.text_field :office_address_state, id: :faculty_office_address_state %>
   </div>
-
-  <div class="field">
+    </div>
+    <div class="row">
+  <div class="field col-sm-4">
     <%= form.label :office_address_country %>
     <%= form.text_field :office_address_country, id: :faculty_office_address_country %>
   </div>
 
-  <div class="field">
+  <div class="field col-sm-4">
     <%= form.label :office_address_pin_code %>
     <%= form.number_field :office_address_pin_code, id: :faculty_office_address_pin_code %>
   </div>
-
-  <div class="field">
+    </div>
+    <div class="row">
+  <div class="field col-sm-4">
     <%= form.label :home_address_locality %>
     <%= form.text_field :home_address_locality, id: :faculty_home_address_locality %>
   </div>
 
-  <div class="field">
+  <div class="field col-sm-4">
     <%= form.label :home_address_city %>
     <%= form.text_field :home_address_city, id: :faculty_home_address_city %>
   </div>
 
-  <div class="field">
+  <div class="field col-sm-4">
     <%= form.label :home_address_state %>
     <%= form.text_field :home_address_state, id: :faculty_home_address_state %>
   </div>
 
-  <div class="field">
+  <div class="field col-sm-4">
     <%= form.label :home_address_country %>
     <%= form.text_field :home_address_country, id: :faculty_home_address_country %>
   </div>
 
-  <div class="field">
+  <div class="field col-sm-4">
     <%= form.label :home_address_pin_code %>
     <%= form.number_field :home_address_pin_code, id: :faculty_home_address_pin_code %>
   </div>
-
-  <div class="field">
+    </div>
+    <div class="row">
+  <div class="field col-sm-4">
     <%= form.label :email %>
     <%= form.text_field :email, id: :faculty_email %>
   </div>
 
-    <div class="field">
+    <div class="field col-sm-4">
       <%= form.label :password %>
       <%= form.password_field :password%>
     </div>
 
-    <div class="field">
+    <div class="field col-sm-4">
       <%= form.label :password_confirmation %>
       <%= form.password_field :password_confirmation%>
     </div>
-
+    </div>
     <div class="field">
       <%= form.label :department_id %>
       <%= select("faculty", "department_id", Department.all.collect {|d| [ d.name, d.id ] }) %>
     </div>
-
-  <div class="actions">
+    <br>
+  <div class="actions" id="butt">
     <%= form.submit %>
   </div>
 <% end %>
