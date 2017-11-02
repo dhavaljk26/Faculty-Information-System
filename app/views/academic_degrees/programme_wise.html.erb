@@ -1,13 +1,27 @@
 <p id="notice"><%= notice %></p>
 
 <h1>Academic Degrees in <%= @prog %> Programme</h1>
-
+<style>
+  table {
+    font-family: arial, sans-serif;
+    border-collapse: collapse;
+    width: 100%;
+  }
+  th{
+    background-color: #dddddd;
+  }
+  td, th {
+    border: 1px solid #112d32;
+    text-align: left;
+    padding: 8px;
+  }
+</style>
 <table>
   <thead>
   <tr>
     <th>Name</th>
     <th>Minimum Duration(Years)</th>
-    <th colspan="3"></th>
+
   </tr>
   </thead>
 

@@ -2,13 +2,29 @@
 <br><br>
 <style>
   .button {
-    background-color: #4723af;
+    background-color: #3d74af;
     color: white;
     padding: 25px 25px;
     text-align: center;
-    font-size: 16px;
+    font-size: 20px;
     cursor: pointer;
     margin-bottom: 15px;
+    display: inline-block;
+    border-radius: 15px;
+    box-shadow: 0 9px #999;
+  }
+  .button:hover {background-color: #5b6f8e
+  }
+
+  .button:active {
+    background-color: #25198e;
+    box-shadow: 0 5px #666666;
+    transform: translateY(4px);
+  }
+  .divider{
+    width: 15px;
+    height:auto;
+    display:none;
   }
 </style>
 <body>
@@ -18,14 +34,18 @@
   <div>
   <div class="container">
     <div class="row">
+      <div type="button" class="button col-md-4"><%= link_to 'Faculties', faculties_path ,{style:'color:#FFFFFF'}%></div>
+      <div class="divider"></div>
       <div type="button" class="button col-md-4"><%= link_to 'Departments', departments_path ,{style:'color:#FFFFFF'}%> </div>
-      <div type="button" class="button col-md-4"><%= link_to 'Academic Degrees', academic_degrees_path,{style:'color:#FFFFFF'} %></div>
+      <div class="divider"></div>
       <div type="button" class="button col-md-4"><%= link_to 'Courses', courses_path,{style:'color:#FFFFFF'} %></div>
     </div>
 
     <div class="row">
-      <div type="button" class="button col-md-4"><%= link_to 'Faculties', faculties_path ,{style:'color:#FFFFFF'}%></div>
+      <div type="button" class="button col-md-4"><%= link_to 'Academic Degrees', academic_degrees_path,{style:'color:#FFFFFF'} %></div>
+      <div class="divider"></div>
       <div type="button" class="button col-md-4"><%= link_to 'Projects', projects_path,{style:'color:#FFFFFF'} %></div>
+      <div class="divider"></div>
       <div type="button" class="button col-md-4"><%= link_to 'Publications', publications_path ,{style:'color:#FFFFFF'}%></div>
       <%if logged_in? and current_faculty.admin%>
         <div type="button" class="button col-md-4"><%= link_to 'Faculty Leave Applications', approve_leaves_path ,{style:'color:#FFFFFF'}%>
