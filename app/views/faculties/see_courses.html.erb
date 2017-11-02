@@ -27,23 +27,23 @@
   </tbody>
 </table>
 
+<%  if logged_in? and (current_faculty.admin or current_faculty.id == @faculty.id)  %>
+  <%= form_tag :action => 'add_course'  do %>
 
-<%= form_tag :action => 'add_course'  do %>
+      <h4>Select Course to Add</h4>
+      <%= select("add", "add_course_id", Course.all.collect {|p| [ p.name, p.id ] }) %>
+      <%= submit_tag("Add") %>
 
-    <h4>Select Course to Add</h4>
-    <%= select("add", "add_course_id", Course.all.collect {|p| [ p.name, p.id ] }) %>
-    <%= submit_tag("Add") %>
+  <% end %>
 
+  <%= form_tag :action => 'del_course'  do %>
+
+      <h4>Select Course to Remove</h4>
+      <%= select("del", "del_course_id", @faculty.courses.collect {|p| [ p.name, p.id ] }) %>
+      <%= submit_tag("Remove") %>
+
+  <% end %>
+  <br>
 <% end %>
-
-<%= form_tag :action => 'del_course'  do %>
-
-    <h4>Select Course to Remove</h4>
-    <%= select("del", "del_course_id", @faculty.courses.collect {|p| [ p.name, p.id ] }) %>
-    <%= submit_tag("Remove") %>
-
-<% end %>
-<br>
-
 <br>
 <%= link_to 'Back', faculty_path%>

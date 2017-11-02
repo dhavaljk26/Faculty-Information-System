@@ -11,6 +11,6 @@
       <% end %>
     </td>
 
-    <td><%= link_to "Delete", [@faculty, leave_application], method: :delete %></td>
+    <td><%= link_to "Delete", [@faculty, leave_application], method: :delete  if logged_in? and (current_faculty.admin or current_faculty.id == @faculty.id) %></td>
   </div>
 </div>

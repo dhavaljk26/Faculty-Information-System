@@ -1,6 +1,5 @@
 <div class="achievement">
   <div>
-    <%= content_tag :li, "#{achievement.description}"%>
-    <%= link_to "Delete", [@faculty, achievement], method: :delete %>
+    <%= content_tag :li, "#{achievement.description}"%> <%= link_to "Delete", [@faculty, achievement], method: :delete   if logged_in? and (current_faculty.admin or current_faculty.id == @faculty.id)  %>
   </div>
 </div>

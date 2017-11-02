@@ -14,7 +14,9 @@
   <%= @academic_degree.min_duration %>
 </p>
 
-<%= link_to 'Edit', edit_academic_degree_path(@academic_degree) %>
+<% if logged_in? and current_faculty.admin %>
+  <%= link_to 'Edit', edit_academic_degree_path(@academic_degree) %>
+<% end %>
 
 <h1>Departments offering <%= @academic_degree.name %></h1>
 
@@ -45,22 +47,22 @@
   </tbody>
 </table>
 
+<% if logged_in? and current_faculty.admin %>
+  <%= form_tag :action => 'add_department'  do %>
 
-<%= form_tag :action => 'add_department'  do %>
+      <h4>Select Department to Add</h4>
+      <%= select("add", "add_department_id", Department.all.collect {|d| [ d.name, d.id ] }) %>
+      <%= submit_tag("Add") %>
 
-    <h4>Select Department to Add</h4>
-    <%= select("add", "add_department_id", Department.all.collect {|d| [ d.name, d.id ] }) %>
-    <%= submit_tag("Add") %>
+  <% end %>
 
-<% end %>
+  <%= form_tag :action => 'del_department'  do %>
 
-<%= form_tag :action => 'del_department'  do %>
+      <h4>Select Department to Remove</h4>
+      <%= select("del", "del_department_id", @academic_degree.departments.collect {|d| [ d.name, d.id ] }) %>
+      <%= submit_tag("Remove") %>
 
-    <h4>Select Department to Remove</h4>
-    <%= select("del", "del_department_id", @academic_degree.departments.collect {|d| [ d.name, d.id ] }) %>
-    <%= submit_tag("Remove") %>
-
+  <% end %>
 <% end %>
 <br>
-
 <%= link_to 'Back', academic_degrees_path %>

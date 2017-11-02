@@ -23,8 +23,10 @@
         <td><%= publication.publish_date %></td>
         <td><%= publication.other_contributors %></td>
         <td><%= link_to 'Show', publication %></td>
-        <td><%= link_to 'Edit', edit_publication_path(publication) %></td>
-        <td><%= link_to 'Destroy', publication, method: :delete, data: { confirm: 'Are you sure?' } %></td>
+        <% if logged_in? and current_faculty.admin  %>
+          <td><%= link_to 'Edit', edit_publication_path(publication) %></td>
+          <td><%= link_to 'Destroy', publication, method: :delete, data: { confirm: 'Are you sure?' } %></td>
+        <% end %>
       </tr>
     <% end %>
   </tbody>
@@ -32,4 +34,4 @@
 
 <br>
 
-<%= link_to 'New Publication', new_publication_path %>
+<%= link_to 'New Publication', new_publication_path if logged_in? and current_faculty.admin %>

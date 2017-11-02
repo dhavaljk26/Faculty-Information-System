@@ -24,7 +24,7 @@
   <%= @publication.other_contributors %>
 </p>
 
-<%= link_to 'Edit', edit_publication_path(@publication) %>
+<%= link_to 'Edit', edit_publication_path(@publication) if logged_in? and current_faculty.admin %>
 
 
 
@@ -57,20 +57,22 @@
 
 <br>
 
-<%= form_tag :action => 'add_faculty'  do %>
+<% if logged_in? and current_faculty.admin  %>
+  <%= form_tag :action => 'add_faculty'  do %>
 
-    <h4>Select Faculty to Add</h4>
-    <%= select("add", "add_faculty_id", Faculty.all.collect {|f| [ f.first_name+" "+f.last_name, f.id ] }) %>
-    <%= submit_tag("Add") %>
+      <h4>Select Faculty to Add</h4>
+      <%= select("add", "add_faculty_id", Faculty.all.collect {|f| [ f.first_name+" "+f.last_name, f.id ] }) %>
+      <%= submit_tag("Add") %>
 
-<% end %>
+  <% end %>
 
-<%= form_tag :action => 'del_faculty'  do %>
+  <%= form_tag :action => 'del_faculty'  do %>
 
-    <h4>Select Faculty to Remove</h4>
-    <%= select("del", "del_faculty_id", @publication.faculties.collect {|f| [ f.first_name+" "+f.last_name, f.id ] }) %>
-    <%= submit_tag("Remove") %>
+      <h4>Select Faculty to Remove</h4>
+      <%= select("del", "del_faculty_id", @publication.faculties.collect {|f| [ f.first_name+" "+f.last_name, f.id ] }) %>
+      <%= submit_tag("Remove") %>
 
-<% end %>
-<br>
+  <% end %>
+  <br>
+<%end%>
 <%= link_to 'Back', publications_path %>

@@ -5,6 +5,6 @@
     <td><%= qualification.institution %></td>
     <td><%= qualification.year %></td>
 
-    <td><%= link_to "Delete", [@faculty, qualification], method: :delete %></td>
+    <td><%= link_to "Delete", [@faculty, qualification], method: :delete  if logged_in? and (current_faculty.admin or current_faculty.id == @faculty.id) %></td>
   </div>
 </div>

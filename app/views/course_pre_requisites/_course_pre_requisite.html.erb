@@ -1,5 +1,5 @@
 <div class="course_pre_requisite">
   <div>
-    <li><%= Course.find(course_pre_requisite.course_pre_requisite_id).name %> <%= link_to "Delete", [@course, course_pre_requisite], method: :delete %></li>
+    <li><%= Course.find(course_pre_requisite.course_pre_requisite_id).name %>  <%= link_to "Delete", [@course, course_pre_requisite], method: :delete if logged_in? and current_faculty.admin %></li>
   </div>
 </div>

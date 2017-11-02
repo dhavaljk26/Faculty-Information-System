@@ -118,7 +118,9 @@
   <% end %>
 </p>
 
-<%= link_to 'Edit details', edit_faculty_path(@faculty) %>
+<% if logged_in? and (current_faculty.admin or current_faculty.id == @faculty.id) %>
+  <%= link_to 'Edit details', edit_faculty_path(@faculty) %>
+<%end%>
 
 <h3>Achievements</h3>
 
@@ -126,19 +128,20 @@
   <%= render @faculty.achievements %>
 </div>
 
-<div>
-  <%= form_for([@faculty, @faculty.achievements.new]) do |f| %>
-      <div class="field">
-        <%= f.label :description %>
-        <%= f.text_field :description %>
-      </div>
+<% if logged_in? and (current_faculty.admin or current_faculty.id == @faculty.id)  %>
+  <div>
+    <%= form_for([@faculty, @faculty.achievements.new]) do |f| %>
+        <div class="field">
+          <%= f.label :description %>
+          <%= f.text_field :description %>
+        </div>
 
-      <div class="actions">
-        <%= f.submit "Add New Achievement" %>
-      </div>
-  <% end %>
-</div>
-
+        <div class="actions">
+          <%= f.submit "Add New Achievement" %>
+        </div>
+    <% end %>
+  </div>
+<% end %>
 
 <h3>Experiences</h3>
 
@@ -160,26 +163,28 @@
   </tbody>
 </table>
 
-<div>
-  <%= form_for([@faculty, @faculty.experiences.new]) do |f| %>
-      <div class="field">
-        <%= f.label :description %>
-        <%= f.text_field :description %>
-      </div>
-      <div class="field">
-        <%= f.label :institute %>
-        <%= f.text_field :institute %>
-      </div>
-      <div class="field">
-        <%= f.label :duration %>
-        <%= f.number_field :duration %>
-      </div>
+<% if logged_in? and (current_faculty.admin or current_faculty.id == @faculty.id) %>
+  <div>
+    <%= form_for([@faculty, @faculty.experiences.new]) do |f| %>
+        <div class="field">
+          <%= f.label :description %>
+          <%= f.text_field :description %>
+        </div>
+        <div class="field">
+          <%= f.label :institute %>
+          <%= f.text_field :institute %>
+        </div>
+        <div class="field">
+          <%= f.label :duration %>
+          <%= f.number_field :duration %>
+        </div>
 
-      <div class="actions">
-        <%= f.submit "Add New Experience" %>
-      </div>
-  <% end %>
-</div>
+        <div class="actions">
+          <%= f.submit "Add New Experience" %>
+        </div>
+    <% end %>
+  </div>
+<% end %>
 
 <h3>Qualifications</h3>
 
@@ -202,6 +207,7 @@
   </tbody>
 </table>
 
+<%  if logged_in? and (current_faculty.admin or current_faculty.id == @faculty.id) %>
 <div>
   <%= form_for([@faculty, @faculty.qualifications.new]) do |f| %>
 
@@ -231,13 +237,15 @@
   <% end %>
 </div>
 
+<% end %>
 
-  <h3>Interest Areas</h3>
+<h3>Interest Areas</h3>
 
-  <div id="interest_areas">
-    <%= render @faculty.interest_areas %>
-  </div>
+<div id="interest_areas">
+  <%= render @faculty.interest_areas %>
+</div>
 
+<% if logged_in? and (current_faculty.admin or current_faculty.id == @faculty.id) %>
   <div>
     <%= form_for([@faculty, @faculty.interest_areas.new]) do |f| %>
         <div class="field">
@@ -250,7 +258,7 @@
         </div>
     <% end %>
   </div>
-
+<% end %>
 <br>
 
 <%= link_to 'See Courses', see_courses_faculty_path %>
@@ -259,7 +267,7 @@
 <br>
 <%= link_to 'See Publications', see_publications_faculty_path %>
 <br>
-<%= link_to 'See Leave Applications', see_leave_applications_faculty_path %>
+<%= link_to 'See Leave Applications', see_leave_applications_faculty_path  if logged_in? and (current_faculty.admin or current_faculty.id == @faculty.id)  %>
 <br>
 
 <%= link_to 'Back', faculties_path %>

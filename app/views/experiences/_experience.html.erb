@@ -4,6 +4,6 @@
     <td><%= experience.institute %></td>
     <td><%= experience.duration %></td>
 
-    <td><%= link_to "Delete", [@faculty, experience], method: :delete %></td>
+    <td><%= link_to "Delete", [@faculty, experience], method: :delete  if logged_in? and (current_faculty.admin or current_faculty.id == @faculty.id)  %></td>
   </div>
 </div>

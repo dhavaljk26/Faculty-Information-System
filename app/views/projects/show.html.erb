@@ -29,7 +29,7 @@
   <%= @project.other_contributors %>
 </p>
 
-<%= link_to 'Edit', edit_project_path(@project) %> |
+<%= link_to 'Edit', edit_project_path(@project) if logged_in? and current_faculty.admin %> |
 
 
 <h2>Faculties involved in this Project</h2>
@@ -61,21 +61,22 @@
 
 <br>
 
-<%= form_tag :action => 'add_faculty'  do %>
+<% if logged_in? and current_faculty.admin  %>
+  <%= form_tag :action => 'add_faculty'  do %>
 
-    <h4>Select Faculty to Add</h4>
-    <%= select("add", "add_faculty_id", Faculty.all.collect {|f| [ f.first_name+" "+f.last_name, f.id ] }) %>
-    <%= submit_tag("Add") %>
+      <h4>Select Faculty to Add</h4>
+      <%= select("add", "add_faculty_id", Faculty.all.collect {|f| [ f.first_name+" "+f.last_name, f.id ] }) %>
+      <%= submit_tag("Add") %>
 
+  <% end %>
+
+  <%= form_tag :action => 'del_faculty'  do %>
+
+      <h4>Select Faculty to Remove</h4>
+      <%= select("del", "del_faculty_id", @project.faculties.collect {|f| [ f.first_name+" "+f.last_name, f.id ] }) %>
+      <%= submit_tag("Remove") %>
+
+  <% end %>
+  <br>
 <% end %>
-
-<%= form_tag :action => 'del_faculty'  do %>
-
-    <h4>Select Faculty to Remove</h4>
-    <%= select("del", "del_faculty_id", @project.faculties.collect {|f| [ f.first_name+" "+f.last_name, f.id ] }) %>
-    <%= submit_tag("Remove") %>
-
-<% end %>
-<br>
-
 <%= link_to 'Back', projects_path %>

@@ -20,30 +20,32 @@
         <td><%= publication.publisher %></td>
         <td><%= publication.publish_date %></td>
         <td><%= publication.other_contributors %></td>
-        <td><%= link_to 'Destroy', publication, method: :delete, data: { confirm: 'Are you sure?' } %></td>
+        <td><%= link_to 'Destroy', publication, method: :delete, data: { confirm: 'Are you sure?' }  if logged_in? and (current_faculty.admin or current_faculty.id == @faculty.id) %></td>
       </tr>
   <% end %>
   </tbody>
 </table>
 
-<%= form_tag :action => 'add_publication'  do %>
+<% if logged_in? and (current_faculty.admin or current_faculty.id == @faculty.id) %>
+  <%= form_tag :action => 'add_publication'  do %>
 
-    <h4>Select Publication to Add</h4>
-    <%= select("add", "add_publication_id", Publication.all.collect {|p| [ p.title, p.id ] }) %>
-    <%= submit_tag("Add") %>
+      <h4>Select Publication to Add</h4>
+      <%= select("add", "add_publication_id", Publication.all.collect {|p| [ p.title, p.id ] }) %>
+      <%= submit_tag("Add") %>
 
-<% end %>
+  <% end %>
 
-<%= form_tag :action => 'del_publication'  do %>
+  <%= form_tag :action => 'del_publication'  do %>
 
-    <h4>Select Publication to Remove</h4>
-    <%= select("del", "del_publication_id", @faculty.publications.collect {|p| [ p.title, p.id ] }) %>
-    <%= submit_tag("Remove") %>
+      <h4>Select Publication to Remove</h4>
+      <%= select("del", "del_publication_id", @faculty.publications.collect {|p| [ p.title, p.id ] }) %>
+      <%= submit_tag("Remove") %>
 
-<% end %>
-<br>
+  <% end %>
+  <br>
 
-<%= link_to 'Create Publication', new_publication_path %>
+  <%= link_to 'Create Publication', new_publication_path %>
+<%end%>
 
 <br>
 <%= link_to 'Back', faculty_path%>
